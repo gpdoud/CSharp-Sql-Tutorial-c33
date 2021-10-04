@@ -10,12 +10,26 @@ namespace CSharp_Sql_Tutorial
 	{
 		static void Main(string[] args)
 		{
+			var connectionString 
+				= "server=localhost\\sqlexpress;database=EdDb;trusted_connection=true;";
+			var connection = new Connection(connectionString);
+			connection.Open();
+
 			var majorsCtrl = new MajorsController();
+
+			var major = majorsCtrl.GetByPk(1);
+			Console.WriteLine(major);
+			major = majorsCtrl.GetByPk(111111);
+			Console.WriteLine(major);
+
+
 			var majors = majorsCtrl.GetAll();
-			foreach(var major in majors)
+			foreach (var maj in majors)
 			{
-				Console.WriteLine(major);
+				Console.WriteLine(maj);
 			}
+
+			connection.Close();
 		}
 		static void X() { 
 			var connStr = "server=localhost\\sqlexpress;database=EdDb;trusted_connection=true;";
