@@ -15,7 +15,20 @@ namespace CSharp_Sql_Tutorial
 			var connection = new Connection(connectionString);
 			connection.Open();
 
-			var majorsCtrl = new MajorsController();
+			var majorsCtrl = new MajorsController(connection);
+
+			var newMajor = new Major()
+			{
+				Id = 0,
+				Code = "UWBW",
+				Description = "Basket Weaving - Underwater",
+				MinSAT = 1590
+			};
+			var rowsAffected = majorsCtrl.Create(newMajor);
+			if(rowsAffected != 1)
+			{
+				Console.WriteLine("Create failed!");
+			}
 
 			var major = majorsCtrl.GetByPk(1);
 			Console.WriteLine(major);
