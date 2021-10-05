@@ -24,17 +24,25 @@ namespace CSharp_Sql_Tutorial
 				Description = "Basket Weaving - Underwater",
 				MinSAT = 1590
 			};
-			var rowsAffected = majorsCtrl.Create(newMajor);
-			if(rowsAffected != 1)
-			{
-				Console.WriteLine("Create failed!");
-			}
+			//var rowsAffected = majorsCtrl.Create(newMajor);
+			//if(rowsAffected != 1)
+			//{
+			//	Console.WriteLine("Create failed!");
+			//}
 
 			var major = majorsCtrl.GetByPk(1);
 			Console.WriteLine(major);
-			major = majorsCtrl.GetByPk(111111);
-			Console.WriteLine(major);
+			//major = majorsCtrl.GetByPk(111111);
+			//Console.WriteLine(major);
 
+			major.Description = "UWBW - By Greg";
+			var rowsAffected = majorsCtrl.Change(major);
+			if (rowsAffected != 1)
+			{
+				Console.WriteLine("Change failed!");
+			}
+
+			//rowsAffected = majorsCtrl.Remove(major.Id);
 
 			var majors = majorsCtrl.GetAll();
 			foreach (var maj in majors)
